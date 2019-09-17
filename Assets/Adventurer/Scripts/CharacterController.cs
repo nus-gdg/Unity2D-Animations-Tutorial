@@ -3,6 +3,7 @@ using UnityEngine.Events;
 
 // Taken from https://github.com/Brackeys/2D-Character-Controller/blob/master/CharacterController2D.cs
 
+[RequireComponent(typeof(CharacterAnimator))]
 public class CharacterController : MonoBehaviour
 {
     [SerializeField] private float m_JumpForce = 400f;							// Amount of force added when the player jumps.
@@ -32,6 +33,7 @@ public class CharacterController : MonoBehaviour
     public BoolEvent OnCrouchEvent;
     private bool m_wasCrouching = false;
 
+    private CharacterAnimator characterAnimator;
     private void Awake()
     {
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
@@ -41,6 +43,8 @@ public class CharacterController : MonoBehaviour
 
         if (OnCrouchEvent == null)
             OnCrouchEvent = new BoolEvent();
+
+        characterAnimator = GetComponent<CharacterAnimator>();
     }
 
     private void FixedUpdate()
@@ -112,6 +116,8 @@ public class CharacterController : MonoBehaviour
             // And then smoothing it out and applying it to the character
             m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
 
+            characterAnimator.Move(Mathf.Abs(m_Rigidbody2D.velocity.x));
+
             // If the input is moving the player right and the player is facing left...
             if (move > 0 && !m_FacingRight)
             {
@@ -131,6 +137,7 @@ public class CharacterController : MonoBehaviour
             // Add a vertical force to the player.
             m_Grounded = false;
             m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+            characterAnimator.Jump();
         }
     }
 

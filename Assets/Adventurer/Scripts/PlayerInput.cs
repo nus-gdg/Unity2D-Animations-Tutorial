@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerInput : MonoBehaviour
 {
+    public float runSpeed = 40f;
     private CharacterController controller;
     // Start is called before the first frame update
     void Start()
@@ -17,6 +18,8 @@ public class PlayerInput : MonoBehaviour
     {
         float value = Input.GetAxis("Horizontal");
         bool jump = Input.GetAxis("Jump") > 0;
-        controller.Move(value, false, jump);
+        bool crouch = Input.GetKey(KeyCode.LeftControl);
+        controller.Move(value * Time.deltaTime * runSpeed, crouch, jump);
+
     }
 }
