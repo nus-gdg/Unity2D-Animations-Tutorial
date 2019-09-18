@@ -14,9 +14,11 @@ GameObject:
   - component: {fileID: 5859142257730054880}
   - component: {fileID: 5859142257730054884}
   - component: {fileID: 5859142257730054891}
+  - component: {fileID: 2057881023}
+  - component: {fileID: 2057881017}
   m_Layer: 0
   m_Name: Adventurer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,8 +122,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.017162241}
-  m_Size: {x: 0.13, y: 0.29878497}
+  m_Offset: {x: 0, y: -0.036917552}
+  m_Size: {x: 0.13, y: 0.25927436}
   m_Direction: 0
 --- !u!114 &5859142257730054884
 MonoBehaviour:
@@ -135,26 +137,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b8330d513f125a438cd073135033499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_JumpForce: 100
+  m_JumpForce: 75
   m_CrouchSpeed: 0.36
-  m_MovementSmoothing: 0.02
+  m_MovementSmoothing: 0.007
   m_AirControl: 1
   m_WhatIsGround:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 256
   m_GroundCheck: {fileID: 5859142257980659529}
   m_CeilingCheck: {fileID: 5859142257762420819}
   m_CrouchDisableCollider: {fileID: 0}
-  OnLandEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnCrouchEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: CharacterController+BoolEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
 --- !u!114 &5859142257730054891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,6 +157,38 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f2f742cfb0d8b674197aaa715b3729d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  runSpeed: 40
+--- !u!95 &2057881023
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5859142257730054881}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ac369864417ab2b4a9a05a9db9ec1be2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2057881017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5859142257730054881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3100a07c14112414b9638ae8364650aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5859142257762420780
@@ -191,7 +215,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5859142257762420780}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.112, z: 0}
+  m_LocalPosition: {x: 0, y: 0.081, z: 0}
   m_LocalScale: {x: 0.2295895, y: 0.2295895, z: 0.2295895}
   m_Children: []
   m_Father: {fileID: 5859142257730054885}

@@ -20,6 +20,5 @@ public class PlayerInput : MonoBehaviour
         bool jump = Input.GetAxis("Jump") > 0;
         bool crouch = Input.GetKey(KeyCode.LeftControl);
         controller.Move(value * Time.deltaTime * runSpeed, crouch, jump);
-
     }
 }

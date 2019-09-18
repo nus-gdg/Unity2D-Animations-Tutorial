@@ -11,7 +11,6 @@ public class CharacterAnimator : MonoBehaviour
     {
         animator = GetComponent<Animator>();
     }
-
     public void Jump()
     {
         animator.SetBool("IsJumping", true);
@@ -30,5 +29,10 @@ public class CharacterAnimator : MonoBehaviour
     public void SetCrouch(bool isCrouching)
     {
         animator.SetBool("IsCrouching", isCrouching);
+    }
+
+    public void OnHurt()
+    {
+        animator.Play("Hurt");
     }
 }

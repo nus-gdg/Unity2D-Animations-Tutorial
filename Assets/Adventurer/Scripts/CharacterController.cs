@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Events;
 
 // Taken from https://github.com/Brackeys/2D-Character-Controller/blob/master/CharacterController2D.cs
 
@@ -22,28 +21,12 @@ public class CharacterController : MonoBehaviour
     private bool m_FacingRight = true;  // For determining which way the player is currently facing.
     private Vector3 m_Velocity = Vector3.zero;
 
-    [Header("Events")]
-    [Space]
-
-    public UnityEvent OnLandEvent;
-
-    [System.Serializable]
-    public class BoolEvent : UnityEvent<bool> { }
-
-    public BoolEvent OnCrouchEvent;
     private bool m_wasCrouching = false;
 
     private CharacterAnimator characterAnimator;
     private void Awake()
     {
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
-
-        if (OnLandEvent == null)
-            OnLandEvent = new UnityEvent();
-
-        if (OnCrouchEvent == null)
-            OnCrouchEvent = new BoolEvent();
-
         characterAnimator = GetComponent<CharacterAnimator>();
     }
 
@@ -61,7 +44,7 @@ public class CharacterController : MonoBehaviour
             {
                 m_Grounded = true;
                 if (!wasGrounded)
-                    OnLandEvent.Invoke();
+                    characterAnimator.Land();
             }
         }
     }
@@ -89,7 +72,7 @@ public class CharacterController : MonoBehaviour
                 if (!m_wasCrouching)
                 {
                     m_wasCrouching = true;
-                    OnCrouchEvent.Invoke(true);
+                    characterAnimator.SetCrouch(true);
                 }
 
                 // Reduce the speed by the crouchSpeed multiplier
@@ -107,7 +90,7 @@ public class CharacterController : MonoBehaviour
                 if (m_wasCrouching)
                 {
                     m_wasCrouching = false;
-                    OnCrouchEvent.Invoke(false);
+                    characterAnimator.SetCrouch(false);
                 }
             }
 
@@ -151,5 +134,10 @@ public class CharacterController : MonoBehaviour
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
+    }
+
+    public void Hurt()
+    {
+        characterAnimator.OnHurt();
     }
 }
