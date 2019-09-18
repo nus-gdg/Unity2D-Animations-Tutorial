@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Animator))]
 public class CharacterAnimator : MonoBehaviour
 {
     private Animator animator;
@@ -13,26 +12,21 @@ public class CharacterAnimator : MonoBehaviour
     }
     public void Jump()
     {
-        animator.SetBool("IsJumping", true);
     }
 
     public void Land()
     {
-        animator.SetBool("IsJumping", false);
     }
 
     public void Move(float speed)
     {
-        animator.SetFloat("Speed", speed);
     }
 
     public void SetCrouch(bool isCrouching)
     {
-        animator.SetBool("IsCrouching", isCrouching);
     }
 
     public void OnHurt()
     {
-        animator.Play("Hurt");
     }
 }

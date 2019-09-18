@@ -8,17 +8,6 @@ public class Coin : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.tag == "Player")
-            OnPlayerCollect();
+            Destroy(gameObject);
     }
-
-    void OnPlayerCollect()
-    {
-        Animator anim = GetComponent<Animator>();
-        anim.Play("Collected");
-    }
-
-    void OnCollectedFinish()
-    {
-        Destroy(gameObject);
-    }
-}
+  }
